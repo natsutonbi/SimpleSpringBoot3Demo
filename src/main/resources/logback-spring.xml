@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <springProperty scope="context" name="APP_NAME" source="spring.application.name"/>
+    <property name="LOG_HOME" value="logs"/>
+    <timestamp key="TIMESTAMP" datePattern="yyyyMMddHHmmss"/>
+    <contextName>${APP_NAME}-${TIMESTAMP}</contextName>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <appender name="COLOR-CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%highlight(%-5level) %cyan(%d{yyyy-MM-dd HH:mm:ss.SSS}) %green([%thread]) %yellow(%logger{15}) - %msg%n%throwable</pattern>
+            <highlight class="ch.qos.logback.core.pattern.color.HighlightingCompositeConverter">
+                <highlightColor>YELLOW</highlightColor>
+                <pattern>ERROR</pattern>
+            </highlight>
+        </encoder>
+    </appender>
+
+    <appender name="INFO-LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd' 'HH:mm:ss.SSS}] [%-5p] [%t] [%C:%L] %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}//%d//info.log</fileNamePattern>
+            <maxHistory>24</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="ERROR-LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd' 'HH:mm:ss.SSS}] [%-5p] [%t] [%C:%L] %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}//%d//error.log</fileNamePattern>
+            <maxHistory>24</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <springProperty scope="context" name="LOG_NAME" source="logging.file.name"/>
+    <appender name="File" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_NAME}</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC-INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>256</queueSize>
+        <appender-ref ref="INFO-LOG"/>
+        <includeCallerData>true</includeCallerData>
+    </appender>
+
+    <appender name="ASYNC-ERROR" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>256</queueSize>
+        <appender-ref ref="ERROR-LOG"/>
+        <includeCallerData>true</includeCallerData>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="COLOR-CONSOLE"/>
+        <appender-ref ref="File"/>
+        <appender-ref ref="ASYNC-INFO"/>
+        <appender-ref ref="ASYNC-ERROR"/>
+    </root>
+</configuration>

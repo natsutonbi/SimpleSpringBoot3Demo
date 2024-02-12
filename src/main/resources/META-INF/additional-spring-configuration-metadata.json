@@ -1,0 +1,62 @@
+{"properties": [
+  {
+    "name": "snowflake.datacenter-id",
+    "type": "java.lang.String",
+    "description": "general datacenter-id for snowflake"
+  },
+  {
+    "name": "snowflake.user.work-id",
+    "type": "java.lang.String",
+    "description": "work-id for gennerating username"
+  },
+  {
+    "name": "snowflake.group.work-id",
+    "type": "java.lang.String",
+    "description": "work-id for gennerating groupid"
+  },
+  {
+    "name": "frontend.address",
+    "type": "java.lang.String",
+    "description": "ipaddress:port of frontend server"
+  },
+  {
+    "name": "spring.security.jwt.key",
+    "type": "java.lang.String",
+    "description": "jwt generation key"
+  },
+  {
+    "name": "spring.security.jwt.expire",
+    "type": "java.lang.int",
+    "description": "jwt.expire time(h)"
+  },
+  {
+    "name": "spring.security.jwt.limit.alter_frequency",
+    "type": "java.lang.int",
+    "description": "using aggresive if token being freshed serveral times during CD'"
+  },
+  {
+    "name": "spring.security.jwt.limit.aggresive",
+    "type": "java.lang.int",
+    "description": "more limited token-freshing CD(s)"
+  },
+  {
+    "name": "spring.security.jwt.limit.basic",
+    "type": "java.lang.int",
+    "description": "basic token-freshing CD(s)"
+  },
+  {
+    "name": "spring.mail.verify-cd",
+    "type": "java.lang.String",
+    "description": "cooling-down time(s) when sending mail verify code"
+  },
+  {
+    "name": "spring.mail.verify-available",
+    "type": "java.lang.String",
+    "description": "mail verify code available time(min)"
+  },
+  {
+    "name": "nacos.client.ip",
+    "type": "java.lang.String",
+    "description": "service ip address that other services can achieve"
+  }
+]}
