@@ -119,11 +119,11 @@
             <artifactId>java-jwt</artifactId>
             <version>4.3.0</version>
         </dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.alibaba.cloud</groupId>
 			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
 			<version>2022.0.0.0</version>
-		</dependency>
+		</dependency> -->
 
 
 

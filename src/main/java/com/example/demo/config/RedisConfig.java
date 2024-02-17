@@ -6,13 +6,14 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.lang.NonNull;
+import org.springframework.security.core.context.SecurityContext;
 
 @Configuration
 public class RedisConfig {
     @Bean
-    public RedisTemplate<String,Object> redisTemplate(@NonNull RedisConnectionFactory factory)
+    public RedisTemplate<String,SecurityContext> securityContextRedisTemplate(@NonNull RedisConnectionFactory factory)
     {
-        RedisTemplate<String,Object> template=new RedisTemplate<>();
+        RedisTemplate<String,SecurityContext> template=new RedisTemplate<>();
         template.setConnectionFactory(factory);
         
         template.setKeySerializer(new StringRedisSerializer());

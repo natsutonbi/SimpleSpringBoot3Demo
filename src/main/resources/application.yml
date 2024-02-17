@@ -11,10 +11,10 @@ spring:
     import: optional:file:.env[.properties]
   application:
     name: user-auth
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ${NACOS_SERVER_ADDRESS}
+  # cloud:
+  #   nacos:
+  #     discovery:
+  #       server-addr: ${NACOS_SERVER_ADDRESS}
   security:
     jwt:
       key: ${JWT_KEY}
@@ -36,6 +36,7 @@ spring:
     host: ${MAIL_HOST}
     username: ${MAIL_USERNAME}
     password: ${MAIL_PASSWORD}
+    login-url: ${MAIL_LOGIN_URL:/api/auth/login/email}
     verify-cd: ${MAIL_VERIFY_CD}
     verify-available: ${MAIL_VERIFY_AVAILABLE}
   kafka:

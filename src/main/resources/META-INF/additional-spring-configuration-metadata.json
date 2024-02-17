@@ -58,5 +58,10 @@
     "name": "nacos.client.ip",
     "type": "java.lang.String",
     "description": "service ip address that other services can achieve"
+  },
+  {
+    "name": "spring.mail.login-url",
+    "type": "java.lang.String",
+    "description": "login url(post) through email code"
   }
 ]}
